@@ -34,7 +34,7 @@ const GameCard = ({ data }: GameCardProps) => {
     <>
       <motion.div
         key={data.id}
-        className="gameCard flex flex-wrap w-1/4 max-xl:w-1/3 max-md:w-1/2 rounded-lg p-3 bg-lightBgColor dark:bg-darkBgColor grow"
+        className="gameCard flex flex-wrap w-1/4 max-xl:w-1/3 max-md:w-1/2 rounded-lg p-3 bg-lightBgColor dark:bg-darkBgColor"
         onHoverStart={() => {
           setIsActive(true);
         }}
