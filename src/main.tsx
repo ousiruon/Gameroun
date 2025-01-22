@@ -43,9 +43,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-useEffect(() => {
-  console.log(import.meta.env.VITE_API_KEY);
-}, []);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router}></RouterProvider>
