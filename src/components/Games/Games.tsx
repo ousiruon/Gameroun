@@ -206,7 +206,7 @@ const Games = () => {
           </div>
         </div>
       )}
-      <div className="flex flex-row w-full flex-wrap gap-5">
+      <div className="flex flex-row w-full flex-wrap">
         {data && data.length > 0 ? (
           data.map((data: DataProps) => <GameCard key={data.id} data={data} />)
         ) : loading ? (
