@@ -69,7 +69,7 @@ const Games = () => {
     if (params.categoryId !== null) {
       setGenre(params.categoryId as string);
     }
-    if (params.tagSlug !== null) {
+    if (params.tagSlug !== null && params.tagSlug !== undefined) {
       setGenre(null);
       setTag(params.tagSlug as string);
     }

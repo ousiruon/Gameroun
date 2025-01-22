@@ -2,6 +2,7 @@ import { Link, NavLink, useParams } from "react-router";
 import { DataProps, useData } from "../../assets/store/store";
 import { motion } from "motion/react";
 import { useState } from "react";
+import No_Preview_image_2 from "../../assets/imgs/No_Preview_image_2.png";
 interface GameCardProps {
   data: DataProps;
 }
@@ -19,7 +20,7 @@ const GameCard = ({ data }: GameCardProps) => {
   const titleVariants = {
     initial: { letterSpacing: "0px" },
     hover: {
-      letterSpacing: '0.025em',
+      letterSpacing: "0.025em",
       transition: {
         duration: 0.8,
         scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
@@ -64,7 +65,7 @@ const GameCard = ({ data }: GameCardProps) => {
             ) : (
               <img
                 className="absolute w-full h-full top-0 left-0 rounded-lg object-center bg-cover"
-                src={"src/assets/imgs/No_Preview_image_2.png"}
+                src={No_Preview_image_2}
                 alt={data.name}
               />
             )}

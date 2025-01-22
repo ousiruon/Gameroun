@@ -105,7 +105,7 @@ interface useDataProps {
     setSearching: (mode:boolean) => void;
     setSearchQuery: (query:string | null) => void;
 }
-const apiKey = '748b23128e744872a69146ca74b71a54';
+const apiKey = import.meta.env.VITE_API_KEY;
 export const useData = create<useDataProps>((set) => ({
     apiKey: apiKey,
     data: [],
