@@ -1,7 +1,11 @@
 import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  BrowserRouter,
+} from "react-router";
 import IndexPage from "./components/IndexPage";
 import ErrorPage from "./components/ErrorPage";
 import SingleGame from "./components/SingleGame";
@@ -45,6 +49,8 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <BrowserRouter>
+      <RouterProvider router={router}></RouterProvider>
+    </BrowserRouter>
   </StrictMode>
 );
