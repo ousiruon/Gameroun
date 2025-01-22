@@ -1,5 +1,5 @@
 import "./index.css";
-import { StrictMode, useEffect } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import IndexPage from "./components/IndexPage";
