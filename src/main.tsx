@@ -1,5 +1,5 @@
 import "./index.css";
-import { StrictMode } from "react";
+import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import IndexPage from "./components/IndexPage";
@@ -43,6 +43,9 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+useEffect(() => {
+  console.log(import.meta.env.VITE_API_KEY);
+}, []);
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router}></RouterProvider>
