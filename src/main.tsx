@@ -1,11 +1,7 @@
 import "./index.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  BrowserRouter,
-} from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import IndexPage from "./components/IndexPage";
 import ErrorPage from "./components/ErrorPage";
 import SingleGame from "./components/SingleGame";
@@ -14,6 +10,7 @@ import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
 import CategoryPage from "./components/CategoryPage";
 import TagsPage from "./components/TagsPage";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,10 +44,9 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <RouterProvider router={router}></RouterProvider>
-    </BrowserRouter>
+    <RouterProvider router={router}></RouterProvider>
   </StrictMode>
 );
