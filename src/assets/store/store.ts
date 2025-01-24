@@ -49,7 +49,7 @@ export const fetchPlatforms = async(apiKey:string) => {
 }
 export const fetchGames = async(apiKey:string, platforms: null | string, ordering: null | string, genres: null | string, tag: null | string, currentPage:number, searching:boolean, query: string | null) => {
     try {
-        const res = searching ? await fetch(`https://api.rawg.io/api/games?search=${query ? `${query}&`:``}${currentPage > 1 ? `page=${currentPage}&` : ""}&key=${apiKey}&page_size=10&search_precise=true&ordering=-metacritic`): await fetch(`https://api.rawg.io/api/games?${genres ? `genres=${genres}&` :''}${tag ? `tags=${tag}&` :''}${platforms ? `platforms=${platforms}&`:''}${ordering ? `ordering=-${ordering}&`:''}${currentPage > 1 ? `page=${currentPage}&` : ""}key=${apiKey}&page_size=10`);
+        const res = searching ? await fetch(`https://api.rawg.io/api/games?search=${query ? `${query}&`:``}${currentPage > 1 ? `page=${currentPage}&` : ""}&key=${apiKey}&page_size=10&search_precise=true&ordering=-metacritic`): await fetch(`https://api.rawg.io/api/games?${genres ? `genres=${genres}&` :''}${tag ? `tags=${tag}&` :''}${platforms ? `platforms=${platforms}&`:''}${ordering ? `ordering=-${ordering}&`:''}${currentPage > 1 ? `page=${currentPage}&` : ""}key=${apiKey}&page_size=12`);
         if(!res.ok) {
             throw new Error(`Failed to fectch. Status: ${res.status}`);
         }
