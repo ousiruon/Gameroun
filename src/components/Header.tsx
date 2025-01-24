@@ -1,4 +1,9 @@
-import { motion, useMotionValueEvent, useScroll } from "motion/react";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "motion/react";
 import { Link, Outlet, useNavigate } from "react-router";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import DarkMode from "./Header/DarkMode";
@@ -34,7 +39,7 @@ const Header = () => {
     animateShape: {
       rotate: "45deg",
       transition: {
-        delay: 0.1,
+        delay: 0.5,
         transition,
       },
     },
@@ -131,7 +136,9 @@ const Header = () => {
         </div>
       </motion.header>
       <main className="flex dark:bg-secondDarkBgColor bg-secondLightBgColor dark:text-darkMainColor text-lightMainColor text-light w-full justify-center min-h-screen">
-        <Outlet />
+        <AnimatePresence>
+          <Outlet />
+        </AnimatePresence>
       </main>
     </>
   );
