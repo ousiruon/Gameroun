@@ -115,7 +115,7 @@ const SingleGame = () => {
               )}
             </div>
             <div
-              className="relative z-10 text-6xl font-bold max-md:text-4xl flex"
+              className="relative z-10 text-6xl font-bold max-md:text-4xl flex flex-wrap items-center justify-center px-4"
               style={{ textShadow: "0 1px 0 black" }}
             >
               {arrayedTitle.length > 0
