@@ -102,7 +102,7 @@ const ConsolePicker = ({
               onHoverEnd={() => setNextButtonAnimation(false)}
             >
               <motion.div
-                className="absolute rounded-full bg-lightBgColor  dark:bg-darkBgColor"
+                className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"
                 whileHover={{
                   width: "150%",
                   height: "150%",
