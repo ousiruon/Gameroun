@@ -46,11 +46,8 @@ const ConsolePicker = ({
                 className="flex items-center justify-center gap-2 flex-col cursor-pointer w-1/4 rounded-md bg-lightBgColor dark:bg-darkBgColor"
               >
                 <motion.div
-                  className={`text-8xl w-full py-6 px-3 flex items-center justify-center overflow-hidden ease-in duration-200 transition-all ${
-                    selectedConsole.find((cons) => cons === e.name)
-                      ? "text-lightSecondMainColor dark:text-darkSecondMainColor"
-                      : ""
-                  }`}
+                  className={`text-8xl w-full py-6 px-3 flex items-center justify-center overflow-hidden`}
+                  initial={{ scale: 1 }}
                   animate={
                     consoleHover.id === e.id && consoleHover.hover
                       ? {
