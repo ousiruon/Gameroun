@@ -173,7 +173,7 @@ const SingleGame = () => {
                     {singleData.ratings.map((rating, index) => (
                       <div
                         key={`${rating.id}-label-${index}`}
-                        className={`flex items-center justify-center text-lg`}
+                        className={`flex items-center justify-center text-lg gap-1`}
                       >
                         <div
                           className={`w-2 h-2 rounded-full ${
@@ -192,6 +192,37 @@ const SingleGame = () => {
                       </div>
                     ))}
                   </div>
+                </div>
+              ) : (
+                ""
+              )}
+              {!singleData.ratings.length ? (
+                <div className="w-[960px] flex flex-col max-lg:items-center max-lg:w-[90%]">
+                  <motion.div
+                    className="w-full flex"
+                    variants={{
+                      intial: {},
+                      animate: {
+                        transition: {
+                          staggerChildren: 0.5,
+                        },
+                      },
+                    }}
+                    initial="initial"
+                    animate="animate"
+                  >
+                    <motion.div
+                      className={`flex items-center justify-center text-lg bg-gray-500
+                      } text-white font-bold py-2 rounded`}
+                      variants={{
+                        initial: { width: "0%" },
+                        animate: { width: "100%" },
+                      }}
+                      transition={{ duration: 0.5, ease: "linear" }}
+                    >
+                      No reviews 😴
+                    </motion.div>
+                  </motion.div>
                 </div>
               ) : (
                 ""

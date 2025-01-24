@@ -174,7 +174,7 @@ const Games = () => {
       {searching ? (
         ""
       ) : (
-        <div className="filters flex gap-5 pb-5 text-lg max-sm:text-base">
+        <div className="filters flex gap-5 pb-5 text-lg max-sm:text-base w-[95%] mt-0 mb-0 ml-auto mr-auto">
           <div className="max-sm:w-1/3">
             <select
               name="ordering"

@@ -10,7 +10,6 @@ import Header from "./components/Header";
 import SearchResults from "./components/SearchResults";
 import CategoryPage from "./components/CategoryPage";
 import TagsPage from "./components/TagsPage";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,7 +43,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router}></RouterProvider>

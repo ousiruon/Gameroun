@@ -5,18 +5,18 @@ export interface DataProps {
     id: number;
     name:string;
     playtime: number;
-    platforms: [{platform: {id:number, name: string}, requirements: {minimum: string, recommended: string}}];
+    platforms: [{platform: {id:number, name: string, slug:string}, requirements: {minimum: string, recommended: string}}];
     released: string;
     background_image: string;
     metacritic: number;
     tags: [{id: number, name: string, slug: string}];
     genres: [{id:number, name:string}];
+    ratings: [{id: number, title: string, count: number, percent: number}];
 }
 interface SingleDataProps extends DataProps {
     description_raw: string;
     website: string;
     background_image_additional: string;
-    ratings: [{id: number, title: string, count: number, percent: number}];
     publishers: [{id:number, name: string}];
 }
 export const fetchCategories = async(apiKey:string) => {
@@ -49,7 +49,7 @@ export const fetchPlatforms = async(apiKey:string) => {
 }
 export const fetchGames = async(apiKey:string, platforms: null | string, ordering: null | string, genres: null | string, tag: null | string, currentPage:number, searching:boolean, query: string | null) => {
     try {
-        const res = searching ? await fetch(`https://api.rawg.io/api/games?search=${query ? `${query}&`:``}${currentPage > 1 ? `page=${currentPage}&` : ""}&key=${apiKey}&page_size=10&search_precise=true&ordering=-metacritic`): await fetch(`https://api.rawg.io/api/games?${genres ? `genres=${genres}&` :''}${tag ? `tags=${tag}&` :''}${platforms ? `platforms=${platforms}&`:''}${ordering ? `ordering=-${ordering}&`:''}${currentPage > 1 ? `page=${currentPage}&` : ""}key=${apiKey}&page_size=12`);
+        const res = searching ? await fetch(`https://api.rawg.io/api/games?search=${query ? `${query}&`:``}${currentPage > 1 ? `page=${currentPage}&` : ""}&key=${apiKey}&page_size=10&search_precise=true&ordering=-metacritic`): await fetch(`https://api.rawg.io/api/games?${genres ? `genres=${genres}&` :''}${tag ? `tags=${tag}&` :''}${platforms ? `platforms=${platforms}&`:''}${ordering ? `ordering=-${ordering}&`:''}${currentPage > 1 ? `page=${currentPage}&` : ""}key=${apiKey}&page_size=24`);
         if(!res.ok) {
             throw new Error(`Failed to fectch. Status: ${res.status}`);
         }
