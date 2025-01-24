@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchCategories, useData } from "../assets/store/store";
 import { NavLink } from "react-router";
+import { useMotionValueEvent, useScroll } from "motion/react";
 export interface CategoriesProps {
   id: number;
   name: string;
@@ -27,9 +28,19 @@ const Categories = () => {
       fetchedCategories();
     }
   }, []);
+
+  const [stickySideMenu, setStickySideMenu] = useState(false);
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 0) {
+      setStickySideMenu(true);
+    } else {
+      setStickySideMenu(false);
+    }
+  });
   return (
     <>
-      <div className="cats flex flex-col gap-4 font-bold sticky top-[100px] left-0 h-screen overflow-scroll">
+      <div className={`cats flex flex-col gap-4 font-bold overflow-scroll ${stickySideMenu ? "fixed top-[100px] left-5 bottom-0 pb-5 w-2/12" : ""}`}>
         <h1 className="text-2xl">Genres</h1>
         {categories && categories.length > 0
           ? categories.map((e) => (
