@@ -26,7 +26,7 @@ const IndexPage = () => {
   }, []);
   return (
     <>
-      <div className="w-2/12 p-5 max-sm:hidden">
+      <div className="w-2/12 p-5 max-sm:hidden relative">
         <Categories />
       </div>
       <motion.div

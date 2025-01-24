@@ -29,7 +29,7 @@ const Categories = () => {
   }, []);
   return (
     <>
-      <div className="cats flex flex-col gap-4 font-bold">
+      <div className="cats flex flex-col gap-4 font-bold sticky top-[100px] left-0 h-screen overflow-scroll">
         <h1 className="text-2xl">Genres</h1>
         {categories && categories.length > 0
           ? categories.map((e) => (
