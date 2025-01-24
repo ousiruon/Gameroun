@@ -65,7 +65,7 @@ const Header = () => {
   const [stickyHeader, setStickyHeader] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 0) {
+    if (latest > 86) {
       setStickyHeader(true);
     } else {
       setStickyHeader(false);
