@@ -8,7 +8,7 @@ export default {
         secondDarkBgColor: "#191B1E",
         darkMainColor: "#ADAEAF",
         darkSecondMainColor: "#D04529",
-        lightBgColor: "#3b82f680",
+        lightBgColor: "#CFCFCF",
         secondLightBgColor: "#F6F7F7",
         lightMainColor: "#403D39",
         lightSecondMainColor: "#E46B52",
