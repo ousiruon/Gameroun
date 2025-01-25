@@ -9,7 +9,6 @@ import {
 import { RiXboxLine } from "react-icons/ri";
 import { useState } from "react";
 import { motion } from "motion/react";
-
 export interface ConsolesProps {
   id: number;
   name: string;
@@ -18,11 +17,13 @@ interface ConsolePickerProps {
   data: ConsolesProps[];
   selectedConsole: string[];
   updateSelectedConsoles: (consoleName: string) => void;
+  setCurrentPosition: (position: number | ((prev: number) => number)) => void;
 }
 const ConsolePicker = ({
   data,
   selectedConsole,
   updateSelectedConsoles,
+  setCurrentPosition,
 }: ConsolePickerProps) => {
   const [consoleHover, setConsoleHover] = useState<{
     id: number | null;
@@ -32,7 +33,7 @@ const ConsolePicker = ({
   return (
     <>
       {data.length > 0 ? (
-        <div className="py-12">
+        <div className="py-12 px-5">
           <div className="text-6xl font-bold w-full text-center pb-6">
             Select your favourite consoles
           </div>
@@ -97,9 +98,14 @@ const ConsolePicker = ({
           </div>
           <div className="my-5 flex items-center justify-center text-xl font-bold ">
             <motion.div
-              className="bg-lightMainColor text-secondLightBgColor dark:bg-darkMainColor dark:text-secondDarkBgColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden"
+              className="bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden"
               onHoverStart={() => setNextButtonAnimation(true)}
               onHoverEnd={() => setNextButtonAnimation(false)}
+              onClick={() =>
+                setCurrentPosition((prev) =>
+                  selectedConsole.length > 0 ? prev + 1 : prev
+                )
+              }
             >
               <motion.div
                 className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"
