@@ -16,7 +16,7 @@ export interface ConsolesProps {
 interface ConsolePickerProps {
   data: ConsolesProps[];
   selectedConsole: string[];
-  updateSelectedConsoles: (consoleName: string) => void;
+  updateSelectedConsoles: (consoleID: string) => void;
   setCurrentPosition: (position: number | ((prev: number) => number)) => void;
 }
 const ConsolePicker = ({
@@ -41,7 +41,7 @@ const ConsolePicker = ({
             {data.map((e) => (
               <motion.div
                 key={e.id}
-                onClick={() => updateSelectedConsoles(e.name)}
+                onClick={() => updateSelectedConsoles(e.id.toString())}
                 onHoverStart={() => setConsoleHover({ id: e.id, hover: true })}
                 onHoverEnd={() => setConsoleHover({ id: e.id, hover: false })}
                 className="flex items-center justify-center gap-2 flex-col cursor-pointer w-1/4 rounded-md bg-lightBgColor dark:bg-darkBgColor"
@@ -84,7 +84,7 @@ const ConsolePicker = ({
                 </motion.div>
                 <div
                   className={`w-full p-3 flex justify-center items-center text-2xl bg-light border-t-2 font-bold rounded-b-md ease-in duration-200 transition-all border-t-lightMainColor dark:border-t-darkMainColor ${
-                    selectedConsole.find((cons) => cons === e.name) ||
+                    selectedConsole.find((cons) => cons === (e.id).toString()) ||
                     (consoleHover.id === e.id && consoleHover.hover)
                       ? "bg-lightSecondMainColor text-lightMainColor dark:bg-darkSecondMainColor dark:text-secondDarkBgColor"
                       : ""

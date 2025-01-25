@@ -3,6 +3,7 @@ import ConsolePicker, { ConsolesProps } from "./Random Game/ConsolePicker";
 import { useEffect, useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
 import MoodPicker from "./Random Game/MoodPicker";
+import RenderRandomGame from "./RenderRandomGame";
 const RandomGame = () => {
   const consoles: ConsolesProps[] = [
     {
@@ -51,10 +52,6 @@ const RandomGame = () => {
   useEffect(() => {
     if (currentPosition === 0) {
       setSelectedMood("");
-    }
-    //To delete after
-    if (currentPosition === 2) {
-      console.log(selectedConsole, selectedMood);
     }
   }, [currentPosition]);
   return (
@@ -105,6 +102,20 @@ const RandomGame = () => {
                 selectedMood={selectedMood}
                 setSelectedMood={setSelectedMood}
                 setCurrentPosition={setCurrentPosition}
+              />
+            </motion.div>
+          )}
+          {currentPosition === 2 && (
+            <motion.div
+              key="singleGame"
+              initial={{ opacity: 0, x: "-100vw" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100vw" }}
+              className="flex items-center justify-center"
+            >
+              <RenderRandomGame
+                selectedConsole={selectedConsole}
+                selectedMood={selectedMood}
               />
             </motion.div>
           )}

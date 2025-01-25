@@ -13,7 +13,7 @@ export interface DataProps {
     genres: [{id:number, name:string}];
     ratings: [{id: number, title: string, count: number, percent: number}];
 }
-interface SingleDataProps extends DataProps {
+export interface SingleDataProps extends DataProps {
     description_raw: string;
     website: string;
     background_image_additional: string;
@@ -55,6 +55,38 @@ export const fetchGames = async(apiKey:string, platforms: null | string, orderin
         }
         const json = await res.json();
         return json;
+    }
+    catch (error) {
+        console.log(`Can't connect to the server!`, error);
+        return [];
+    }
+}
+export const fetchRandomGames = async(apiKey:string, platforms: null | string, genres: null | string) => {
+    try {
+        const res = await fetch(`https://api.rawg.io/api/games?${genres ? `genres=${genres}&` :''}${platforms ? `platforms=${platforms}&`:''}&key=${apiKey}&page_size=40`);
+        if(!res.ok) {
+            throw new Error(`Failed to fectch. Status: ${res.status}`);
+        }
+        const json = await res.json();
+        const resultsCount = json.count;
+        const fetchedResults = [];
+        for (let i = 0; i <= 2; i++) {
+            try {
+                const res = await fetch(`https://api.rawg.io/api/games?${genres ? `genres=${genres}&` :''}${platforms ? `platforms=${platforms}&`:''}&key=${apiKey}&page_size=40&page=${resultsCount <= 10000 ? Math.floor(Math.random() * (resultsCount / 40)) + 1 : Math.floor(Math.random() * 250) + 1}`);
+                if(!res.ok) {
+                    throw new Error(`Failed to fectch. Status: ${res.status}`);
+                }
+                const json = await res.json();
+                const results = json.results;
+                const randomIndex = Math.floor(Math.random() * (results.length - 1));
+                fetchedResults.push(results[randomIndex])
+            }
+            catch (error) {
+                console.log(`Can't connect to the server!`, error);
+                return [];
+            }
+        }
+        return fetchedResults;
     }
     catch (error) {
         console.log(`Can't connect to the server!`, error);
