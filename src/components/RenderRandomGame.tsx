@@ -43,7 +43,7 @@ const RenderRandomGame = ({
       {data.length > 0 && !loading && (
         <div className="flex flex-col w-full items-center">
           <div className="flex w-full text-2xl text-secondLightBgColor dark:text-darkBgColor font-bold gap-1">
-            {[...Array(data.length)].map((_, index) => (
+            {[...Array(data.length <= 3 ? 3 : data.length)].map((_, index) => (
               <div
                 key={index}
                 className={`w-1/3 flex items-center justify-center  py-4 bg-lightMainColor dark:bg-darkMainColor ${
@@ -56,7 +56,12 @@ const RenderRandomGame = ({
               </div>
             ))}
           </div>
-          <RandomGameCard data={data[currentIndex]} />
+          <RandomGameCard
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            maxLength={data.length <= 3 ? 3 : data.length}
+            data={data[currentIndex]}
+          />
         </div>
       )}
     </>

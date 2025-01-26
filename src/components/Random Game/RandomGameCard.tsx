@@ -2,15 +2,100 @@ import { DataProps } from "../../assets/store/store";
 import No_Preview_image_2 from "../../assets/imgs/No_Preview_image_2.png";
 import { motion } from "motion/react";
 import { Link, NavLink } from "react-router-dom";
+import { useState } from "react";
 
 interface RandomGameCardProps {
   data: DataProps;
+  maxLength: number;
+  currentIndex: number;
+  setCurrentIndex: (index: number | ((prev: number) => number)) => void;
 }
-const RandomGameCard = ({ data }: RandomGameCardProps) => {
+const RandomGameCard = ({
+  data,
+  maxLength,
+  setCurrentIndex,
+  currentIndex,
+}: RandomGameCardProps) => {
+  const [nextButtonAnimation, setNextButtonAnimation] = useState(false);
+  const [prevButtonAnimation, setPrevButtonAnimation] = useState(false);
   return (
     <>
       {data && (
         <div className="mt-28 flex flex-col w-1/2 rounded">
+          <div className="flex w-full justify-between my-7">
+            <motion.div
+              className={`bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden ${currentIndex === 0 && "opacity-0"} `}
+              onHoverStart={() => setPrevButtonAnimation(true)}
+              onHoverEnd={() => setPrevButtonAnimation(false)}
+              onClick={() =>
+                setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev))
+              }
+            >
+              <motion.div
+                className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"
+                whileHover={{
+                  width: "150%",
+                  height: "150%",
+                  transition: { duration: 1 },
+                }}
+                initial={prevButtonAnimation ? {} : { width: 0, height: 0 }}
+                animate={
+                  prevButtonAnimation
+                    ? {
+                        width: "150%",
+                        height: "150%",
+                        transition: { duration: 1 },
+                      }
+                    : {}
+                }
+              ></motion.div>
+              <motion.div
+                className={`relative z-10 ease-in duration-200 transition-all ${
+                  prevButtonAnimation
+                    ? "dark:text-darkMainColor text-lightMainColor"
+                    : ""
+                }`}
+              >
+                Previous
+              </motion.div>
+            </motion.div>
+            <motion.div
+              className={`bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden ${currentIndex + 1 === maxLength && "opacity-0"}`}
+              onHoverStart={() => setNextButtonAnimation(true)}
+              onHoverEnd={() => setNextButtonAnimation(false)}
+              onClick={() =>
+                setCurrentIndex((prev) => (prev + 1 <= maxLength ? prev + 1 : prev))
+              }
+            >
+              <motion.div
+                className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"
+                whileHover={{
+                  width: "150%",
+                  height: "150%",
+                  transition: { duration: 1 },
+                }}
+                initial={nextButtonAnimation ? {} : { width: 0, height: 0 }}
+                animate={
+                  nextButtonAnimation
+                    ? {
+                        width: "150%",
+                        height: "150%",
+                        transition: { duration: 1 },
+                      }
+                    : {}
+                }
+              ></motion.div>
+              <motion.div
+                className={`relative z-10 ease-in duration-200 transition-all ${
+                  nextButtonAnimation
+                    ? "dark:text-darkMainColor text-lightMainColor"
+                    : ""
+                }`}
+              >
+                Next
+              </motion.div>
+            </motion.div>
+          </div>
           <Link className="flex" to={`../game/${data.id}/${data.name}`}>
             <div className="pt-[80%] w-full relative rounded-t">
               <img
