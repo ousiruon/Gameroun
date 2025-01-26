@@ -21,7 +21,7 @@ const RandomGameCard = ({
   return (
     <>
       {data && (
-        <div className="mt-28 flex flex-col w-1/2 rounded">
+        <div className="mt-28 flex flex-col w-1/2 rounded max-md:w-[90%] max-lg:w-[75%]">
           <div className="flex w-full justify-between my-7">
             <motion.div
               className={`bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden ${currentIndex === 0 && "opacity-0"} `}

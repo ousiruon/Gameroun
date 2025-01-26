@@ -122,16 +122,16 @@ const MoodPicker = ({
     <>
       {categoryToMood.length > 0 ? (
         <div className="py-12 px-5">
-          <div className="text-6xl font-bold w-full text-center pb-6">
+          <div className="text-6xl font-bold w-full text-center pb-6 max-lg:text-5xl max-md:text-4xl">
             Select your current Mood
           </div>
-          <div className="flex justify-center flex-wrap min-w-[960px] gap-6">
+          <div className="flex justify-center flex-wrap min-w-[960px] gap-6 max-lg:min-w-[95%]">
             {categoryToMood.map((e: MoodProps) => (
               <motion.div
                 key={e.id}
                 onHoverStart={() => setMoodHover({ id: e.id, hover: true })}
                 onHoverEnd={() => setMoodHover({ id: e.id, hover: false })}
-                className={`flex items-center justify-center gap-2 flex-col cursor-pointer w-1/4 rounded-md bg-lightBgColor dark:bg-darkBgColor ${
+                className={`flex items-center justify-center gap-2 flex-col cursor-pointer w-1/4 rounded-md bg-lightBgColor dark:bg-darkBgColor max-lg:w-1/3 max-md:w-1/2 ${
                   selectedMood === e.id.toString()
                     ? "border-2 border-lightSecondMainColor dark:border-darkSecondMainColor"
                     : ""

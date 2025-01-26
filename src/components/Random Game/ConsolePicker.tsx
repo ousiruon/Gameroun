@@ -34,20 +34,20 @@ const ConsolePicker = ({
     <>
       {data.length > 0 ? (
         <div className="py-12 px-5">
-          <div className="text-6xl font-bold w-full text-center pb-6">
+          <div className="text-6xl font-bold w-full text-center pb-6 max-lg:text-5xl max-md:text-4xl">
             Select your favourite consoles
           </div>
-          <div className="flex justify-center flex-wrap min-w-[960px] gap-6">
+          <div className="flex justify-center flex-wrap min-w-[960px] gap-6 max-lg:min-w-[95%]">
             {data.map((e) => (
               <motion.div
                 key={e.id}
                 onClick={() => updateSelectedConsoles(e.id.toString())}
                 onHoverStart={() => setConsoleHover({ id: e.id, hover: true })}
                 onHoverEnd={() => setConsoleHover({ id: e.id, hover: false })}
-                className="flex items-center justify-center gap-2 flex-col cursor-pointer w-1/4 rounded-md bg-lightBgColor dark:bg-darkBgColor"
+                className="flex items-center justify-center gap-2 flex-col cursor-pointer w-1/4 rounded-md bg-lightBgColor dark:bg-darkBgColor max-lg:w-1/3 max-md:w-1/2"
               >
                 <motion.div
-                  className={`text-8xl w-full py-6 px-3 flex items-center justify-center overflow-hidden`}
+                  className={`text-8xl w-full py-6 px-3 flex items-center justify-center overflow-hidden max-lg:text-6xl`}
                   initial={{ scale: 1 }}
                   animate={
                     consoleHover.id === e.id && consoleHover.hover
@@ -83,8 +83,8 @@ const ConsolePicker = ({
                   )}
                 </motion.div>
                 <div
-                  className={`w-full p-3 flex justify-center items-center text-2xl bg-light border-t-2 font-bold rounded-b-md ease-in duration-200 transition-all border-t-lightMainColor dark:border-t-darkMainColor ${
-                    selectedConsole.find((cons) => cons === (e.id).toString()) ||
+                  className={`w-full p-3 flex justify-center items-center text-2xl bg-light border-t-2 font-bold rounded-b-md ease-in duration-200 transition-all border-t-lightMainColor dark:border-t-darkMainColor max-md:text-xl ${
+                    selectedConsole.find((cons) => cons === e.id.toString()) ||
                     (consoleHover.id === e.id && consoleHover.hover)
                       ? "bg-lightSecondMainColor text-lightMainColor dark:bg-darkSecondMainColor dark:text-secondDarkBgColor"
                       : ""
