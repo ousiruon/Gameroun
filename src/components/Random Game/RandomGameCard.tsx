@@ -62,7 +62,7 @@ const RandomGameCard = ({
               </motion.div>
             </motion.div>
             <motion.div
-              className={`bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden ${
+              className={`bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer font-bold relative flex items-center justify-center overflow-hidden ${
                 currentIndex + 1 === maxLength && "opacity-0"
               }`}
               onHoverStart={() => setNextButtonAnimation(true)}
