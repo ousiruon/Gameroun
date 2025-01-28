@@ -122,7 +122,7 @@ const MoodPicker = ({
     <>
       {categoryToMood.length > 0 ? (
         <div className="py-12 px-5">
-          <div className="text-6xl font-bold w-full text-center pb-6 max-lg:text-5xl max-md:text-4xl">
+          <div className="font-bold w-full text-center pb-6 text-4xl max-lg:text-3xl max-md:text-2xl">
             Select your current Mood
           </div>
           <div className="flex justify-center flex-wrap min-w-[960px] gap-6 max-lg:min-w-[95%]">
@@ -131,7 +131,7 @@ const MoodPicker = ({
                 key={e.id}
                 onHoverStart={() => setMoodHover({ id: e.id, hover: true })}
                 onHoverEnd={() => setMoodHover({ id: e.id, hover: false })}
-                className={`flex items-center justify-center gap-2 flex-col cursor-pointer w-1/4 rounded-md bg-lightBgColor dark:bg-darkBgColor max-lg:w-1/3 max-md:w-1/2 ${
+                className={`flex items-center justify-center gap-2 flex-col cursor-pointer rounded-md bg-lightBgColor dark:bg-darkBgColor w-1/5 max-lg:w-1/4 max-md:w-1/3 max-sm:w-1/2 ${
                   selectedMood === e.id.toString()
                     ? "border-2 border-lightSecondMainColor dark:border-darkSecondMainColor"
                     : ""
@@ -148,7 +148,7 @@ const MoodPicker = ({
                       }
                     : {}
                 }
-                onClick={() => setSelectedMood((e.id).toString())}
+                onClick={() => setSelectedMood(e.id.toString())}
               >
                 <div className="text-4xl w-full py-6 px-3 flex items-center justify-center overflow-hidden ">
                   {e.emoji}
@@ -162,11 +162,7 @@ const MoodPicker = ({
               className="bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden"
               onHoverStart={() => setPrevButtonAnimation(true)}
               onHoverEnd={() => setPrevButtonAnimation(false)}
-              onClick={() =>
-                setCurrentPosition((prev) =>
-                  prev - 1
-                )
-              }
+              onClick={() => setCurrentPosition((prev) => prev - 1)}
             >
               <motion.div
                 className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"

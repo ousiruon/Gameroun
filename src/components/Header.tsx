@@ -86,7 +86,7 @@ const Header = () => {
         }}
         className={`flex w-full dark:bg-darkBgColor bg-lightBgColor dark:text-darkMainColor text-lightMainColor text-light text-xl p-5 ${
           stickyHeader ? "py-6" : ""
-        } gap-5 z-50`}
+        } gap-5 z-40`}
       >
         <Link to="/">
           <motion.div
@@ -120,7 +120,7 @@ const Header = () => {
             />
           </form>
           <div className="w-1/12 flex items-center justify-end gap-5 max-md:gap-2 max-md:w-2/12">
-            <Link to="/randomGame">
+            <Link reloadDocument to={"randomGame"}>
               <motion.div variants={variants} whileHover="iconsHover">
                 <GiPerspectiveDiceSixFacesRandom size={24} />
               </motion.div>
