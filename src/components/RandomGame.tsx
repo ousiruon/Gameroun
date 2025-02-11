@@ -56,7 +56,7 @@ const RandomGame = () => {
   }, [currentPosition]);
   return (
     <>
-      <motion.div className="flex flex-col max-w-screen w-full overflow-hidden">
+      <motion.div className="flex flex-col max-w-screen w-full overflow-hidden gap-2">
         {currentPosition < 2 && (
           <div className="w-full flex items-end justify-end py-6 px-6 text-2xl">
             {[...Array(2)].map((_, index) => (

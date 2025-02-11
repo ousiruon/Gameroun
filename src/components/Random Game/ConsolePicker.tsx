@@ -30,6 +30,7 @@ const ConsolePicker = ({
     hover: boolean;
   }>({ id: null, hover: false });
   const [nextButtonAnimation, setNextButtonAnimation] = useState(false);
+  const [showError, setShowError] = useState(false);
   return (
     <>
       {data.length > 0 ? (
