@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import ConsolePicker, { ConsolesProps } from "./Random Game/ConsolePicker";
 import { useEffect, useState } from "react";
-import { MdNavigateNext } from "react-icons/md";
+import { FaRegCircleDot } from "react-icons/fa6";
 import MoodPicker from "./Random Game/MoodPicker";
 import RenderRandomGame from "./RenderRandomGame";
 const RandomGame = () => {
@@ -68,7 +68,7 @@ const RandomGame = () => {
                 }`}
                 key={index}
               >
-                <MdNavigateNext />
+                <FaRegCircleDot />
               </div>
             ))}
           </div>
