@@ -8,8 +8,7 @@ import { Link, Outlet, useNavigate } from "react-router";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import DarkMode from "./Header/DarkMode";
 import { useData } from "../assets/store/store";
-import { FormEvent, useState } from "react";
-
+import { FormEvent, useEffect, useState } from "react";
 const Header = () => {
   const { darkMode, setMode, searchQuery } = useData();
   const transition = {
@@ -52,6 +51,16 @@ const Header = () => {
       transition,
     },
   };
+  const [showToolTip, setShowToolTip] = useState(true);
+  const [delayToolTip, setDelayToolTip] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setDelayToolTip(true);
+    }, 2000);
+    setTimeout(() => {
+      setShowToolTip(false);
+    }, 5000);
+  }, []);
   const navigate = useNavigate();
   const submitSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,7 +74,7 @@ const Header = () => {
   const [stickyHeader, setStickyHeader] = useState(false);
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 86) {
+    if (latest > 300) {
       setStickyHeader(true);
     } else {
       setStickyHeader(false);
@@ -74,17 +83,13 @@ const Header = () => {
   return (
     <>
       <motion.header
-        animate={
-          stickyHeader
-            ? { position: "fixed", scaleY: 0.95, y: -5 }
-            : { position: "relative" }
-        }
+        animate={stickyHeader ? { scaleY: 0.95, y: -5 } : {}}
         transition={{
           ease: "easeOut",
           type: "spring",
           stiffness: 50,
         }}
-        className={`flex w-full dark:bg-darkBgColor bg-lightBgColor dark:text-darkMainColor text-lightMainColor text-light text-xl p-5 ${
+        className={`sticky top-0 left-0 flex w-full dark:bg-darkBgColor bg-lightBgColor dark:text-darkMainColor text-lightMainColor text-light text-xl p-5 ${
           stickyHeader ? "py-6" : ""
         } gap-5 z-40`}
       >
@@ -121,8 +126,18 @@ const Header = () => {
           </form>
           <div className="w-1/12 flex items-center justify-end gap-5 max-md:gap-2 max-md:w-2/12">
             <Link reloadDocument to={"randomGame"}>
-              <motion.div variants={variants} whileHover="iconsHover">
+              <motion.div
+                className="relative"
+                variants={showToolTip ? {} : variants}
+                whileHover={showToolTip ? {} : "iconsHover"}
+              >
                 <GiPerspectiveDiceSixFacesRandom size={24} />
+                {delayToolTip && showToolTip && (
+                  <motion.div className="transition delay-150 duration-300 ease-in bg-secondDarkBgColor dark:bg-secondLightBgColor text-lightBgColor dark:text-darkBgColor absolute right-0 font-bold px-2 py-0.5 rounded-sm text-sm my-2">
+                    <div className="absolute top-[-5px] right-2 w-[10px] h-[12px] rotate-45 bg-secondDarkBgColor dark:bg-secondLightBgColor"></div>
+                    Feeling lucky?
+                  </motion.div>
+                )}
               </motion.div>
             </Link>
             <motion.div
