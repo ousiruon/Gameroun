@@ -4,7 +4,7 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "motion/react";
-import { Link, Outlet, useNavigate } from "react-router";
+import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import DarkMode from "./Header/DarkMode";
 import { useData } from "../assets/store/store";
@@ -80,6 +80,10 @@ const Header = () => {
       setStickyHeader(false);
     }
   });
+  const currentLocation = useLocation();
+  useEffect(() => {
+    console.log(currentLocation.pathname);
+  }, []);
   return (
     <>
       <motion.header
@@ -132,7 +136,7 @@ const Header = () => {
                 whileHover={showToolTip ? {} : "iconsHover"}
               >
                 <GiPerspectiveDiceSixFacesRandom size={24} />
-                {delayToolTip && showToolTip && (
+                {delayToolTip && showToolTip && currentLocation.pathname !== "/randomGame" && (
                   <motion.div className="transition delay-150 duration-300 ease-in bg-secondDarkBgColor dark:bg-secondLightBgColor text-lightBgColor dark:text-darkBgColor absolute right-0 font-bold px-2 py-0.5 rounded-sm text-sm my-2">
                     <div className="absolute top-[-5px] right-2 w-[10px] h-[12px] rotate-45 bg-secondDarkBgColor dark:bg-secondLightBgColor"></div>
                     Feeling lucky?
