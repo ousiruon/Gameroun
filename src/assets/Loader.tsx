@@ -1,4 +1,6 @@
 import { motion } from "motion/react";
+//Loader component
+//This component is used to show a loading animation
 const Loader = () => {
   const variants = {
     initial: {

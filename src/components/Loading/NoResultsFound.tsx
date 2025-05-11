@@ -1,3 +1,5 @@
+// No reseults found component
+// This component is used to show a message when no results are found
 const NoResultsFound = () => {
   return (
     <>

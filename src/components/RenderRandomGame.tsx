@@ -7,17 +7,20 @@ import {
 import NoResultsFound from "./Loading/NoResultsFound";
 import RandomGameLoader from "./Loading/RandomGameLoader";
 import RandomGameCard from "./Random Game/RandomGameCard";
+// Interface for the RendenrRandomGame component, it is used to define the props of the RenderRandomGame component
 interface RenderRandomGameProps {
   selectedConsole: string[];
   selectedMood: string;
 }
+// RenderRandomGame component
+// This component is used to show a random game based on the selected console and mood
 const RenderRandomGame = ({
   selectedConsole,
   selectedMood,
 }: RenderRandomGameProps) => {
   const { apiKey } = useData();
   const [loading, setLoading] = useState(true);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [data, setData] = useState<SingleDataProps[] | []>([]);
   useEffect(() => {
     const fetchGames = async () => {

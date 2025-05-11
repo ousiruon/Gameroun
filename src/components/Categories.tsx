@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import { fetchCategories, useData } from "../assets/store/store";
 import { NavLink } from "react-router";
 import { useMotionValueEvent, useScroll } from "motion/react";
+// Interface for each category
 export interface CategoriesProps {
   id: number;
   name: string;
   image_background: string;
 }
+// Categories component
+// This component is used to show a list of categories, the categories are fetched from the API and stored in local storage
+// and then displayed in a sidebar
 const Categories = () => {
   const [categories, setCategories] = useState<CategoriesProps[]>([]);
   const { apiKey } = useData();

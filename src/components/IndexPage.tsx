@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Categories from "./Categories";
 import Games from "./Games/Games";
 import { motion } from "motion/react";
-
+// Variants for the container animation
 export const containerVariants = {
   hidden: {
     opacity: 0,
@@ -20,6 +20,8 @@ export const containerVariants = {
     transition: { ease: "easeInOut" },
   },
 };
+// The main page component
+// This component is used to show the main page of the app
 const IndexPage = () => {
   useEffect(() => {
     document.title = "GameRoun";

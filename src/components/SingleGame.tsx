@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import Loader from "../assets/Loader";
 import { motion } from "motion/react";
 import { containerVariants } from "./IndexPage";
+// SingleGame component
+// This component is used to show a single game page
+// It fetches the game data from the API and displays it
 const SingleGame = () => {
   const { gameId, gameName } = useParams();
   const { setSingleData, singleData, apiKey } = useData();
-  const [updated, setUpdated] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const [updated, setUpdated] = useState<boolean>(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
   const [arrayedTitle, setArrayedTitle] = useState<string[]>([]);
   useEffect(() => {
     gameId ? setUpdated(true) : setUpdated(false);

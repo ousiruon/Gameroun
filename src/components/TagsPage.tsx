@@ -3,7 +3,8 @@ import Categories from "./Categories";
 import Games from "./Games/Games";
 import { containerVariants } from "./IndexPage";
 import { motion } from "motion/react";
-
+// Show a set of games based on the tag selected
+// This component is used to show a list of games based on the tag selected
 const TagsPage = () => {
   const params = useParams<{ tagSlug: string }>();
   return (

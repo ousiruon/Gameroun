@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { useData } from "../../assets/store/store";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
-
+// DarkMode component
+// This component is used to toggle the dark mode
 const DarkMode = () => {
   const { darkMode, setMode } = useData();
   useEffect(() => {

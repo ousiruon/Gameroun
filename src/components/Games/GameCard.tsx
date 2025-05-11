@@ -16,6 +16,8 @@ import { SiWii } from "react-icons/si";
 interface GameCardProps {
   data: DataProps;
 }
+// GameCard component
+// This component is used to show a single game card
 const GameCard = ({ data }: GameCardProps) => {
   const imageVariants = {
     initial: { scale: 1 },
@@ -37,7 +39,7 @@ const GameCard = ({ data }: GameCardProps) => {
       },
     },
   };
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState<boolean>(false);
   const { searching } = useData();
   const params = useParams();
   const [platformIcons, setPlatformIcons] = useState<string[]>([]);

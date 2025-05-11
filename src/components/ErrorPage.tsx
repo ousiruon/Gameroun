@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-
+// ErrorPage component
+// This component is used to show a 404 error page when no results are found
 const ErrorPage = () => {
   return (
     <>

@@ -5,7 +5,8 @@ import { useData } from "../assets/store/store";
 import { useEffect } from "react";
 import { containerVariants } from "./IndexPage";
 import { motion } from "motion/react";
-
+// SearchResults component
+// This component is used to show a list of games based on the search query
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
   const { setSearching, setSearchQuery } = useData();

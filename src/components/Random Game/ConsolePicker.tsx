@@ -7,18 +7,23 @@ import {
   SiApple,
 } from "react-icons/si";
 import { RiXboxLine } from "react-icons/ri";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
+// Interface for each console
 export interface ConsolesProps {
   id: number;
   name: string;
 }
+// Interface for the props of the ConsolePicker component
+// This interface is used to define the props that the ConsolePicker component will receive
 interface ConsolePickerProps {
   data: ConsolesProps[];
   selectedConsole: string[];
   updateSelectedConsoles: (consoleID: string) => void;
   setCurrentPosition: (position: number | ((prev: number) => number)) => void;
 }
+// ConsolePicker component
+// This component is used to show a list of consoles and allow the user to select at least one of them
 const ConsolePicker = ({
   data,
   selectedConsole,
@@ -30,6 +35,7 @@ const ConsolePicker = ({
     hover: boolean;
   }>({ id: null, hover: false });
   const [nextButtonAnimation, setNextButtonAnimation] = useState(false);
+  const [displayError, setDispayError] = useState<boolean>(false);
   return (
     <>
       {data.length > 0 ? (
@@ -98,16 +104,24 @@ const ConsolePicker = ({
               </motion.div>
             ))}
           </div>
-          <div className="my-5 flex items-center justify-center text-xl font-bold ">
+          <div className="my-5 flex flex-col gap-2 items-center justify-center text-xl font-bold">
+            <div
+              className={`text-red-500 mr-2 text-base ${
+                displayError ? "block" : "hidden"
+              }`}
+            >
+              You must select at least one console
+            </div>
             <motion.div
               className="bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden"
               onHoverStart={() => setNextButtonAnimation(true)}
               onHoverEnd={() => setNextButtonAnimation(false)}
-              onClick={() =>
+              onClick={() => {
+                selectedConsole.length === 0 && setDispayError(true);
                 setCurrentPosition((prev) =>
                   selectedConsole.length > 0 ? prev + 1 : prev
-                )
-              }
+                );
+              }}
             >
               <motion.div
                 className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"

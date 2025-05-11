@@ -9,8 +9,13 @@ import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import DarkMode from "./Header/DarkMode";
 import { useData } from "../assets/store/store";
 import { FormEvent, useEffect, useState } from "react";
+// Header component
+// This component is used to show the header of the app, it contains the logo, search bar and dark mode toggle
 const Header = () => {
+  // Get the dark mode state and setMode function from the store
+  // Get the search query from the store
   const { darkMode, setMode, searchQuery } = useData();
+  // Animation variants for the logo and icons
   const transition = {
     duration: 0.5,
     ease: "easeInOut",
@@ -51,8 +56,10 @@ const Header = () => {
       transition,
     },
   };
-  const [showToolTip, setShowToolTip] = useState(true);
-  const [delayToolTip, setDelayToolTip] = useState(false);
+  // State to show the tooltip for the random game icon
+  // State to delay the tooltip for the random game icon
+  const [showToolTip, setShowToolTip] = useState<boolean>(true);
+  const [delayToolTip, setDelayToolTip] = useState<boolean>(false);
   useEffect(() => {
     setTimeout(() => {
       setDelayToolTip(true);
@@ -61,6 +68,8 @@ const Header = () => {
       setShowToolTip(false);
     }, 5000);
   }, []);
+  // Function to handle the search form submission
+  // This function will navigate to the search page with the query
   const navigate = useNavigate();
   const submitSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -71,7 +80,8 @@ const Header = () => {
       e.currentTarget.searchQuery.value = "";
     }
   };
-  const [stickyHeader, setStickyHeader] = useState(false);
+  const [stickyHeader, setStickyHeader] = useState<boolean>(false);
+  // State to show the sticky header
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 300) {
@@ -80,10 +90,15 @@ const Header = () => {
       setStickyHeader(false);
     }
   });
+  // Reset the scroll position to the top when the location changes
+  // This is done to avoid the scroll position being saved when navigating between pages
   const currentLocation = useLocation();
   useEffect(() => {
-    console.log(currentLocation.pathname);
-  }, []);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  }, [currentLocation]);
   return (
     <>
       <motion.header
@@ -136,12 +151,14 @@ const Header = () => {
                 whileHover={showToolTip ? {} : "iconsHover"}
               >
                 <GiPerspectiveDiceSixFacesRandom size={24} />
-                {delayToolTip && showToolTip && currentLocation.pathname !== "/randomGame" && (
-                  <motion.div className="transition delay-150 duration-300 ease-in bg-secondDarkBgColor dark:bg-secondLightBgColor text-lightBgColor dark:text-darkBgColor absolute right-0 font-bold px-2 py-0.5 rounded-sm text-sm my-2">
-                    <div className="absolute top-[-5px] right-2 w-[10px] h-[12px] rotate-45 bg-secondDarkBgColor dark:bg-secondLightBgColor"></div>
-                    Feeling lucky?
-                  </motion.div>
-                )}
+                {delayToolTip &&
+                  showToolTip &&
+                  currentLocation.pathname !== "/randomGame" && (
+                    <motion.div className="transition delay-150 duration-300 ease-in bg-secondDarkBgColor dark:bg-secondLightBgColor text-lightBgColor dark:text-darkBgColor absolute right-0 font-bold px-2 py-0.5 rounded-sm text-sm my-2">
+                      <div className="absolute top-[-5px] right-2 w-[10px] h-[12px] rotate-45 bg-secondDarkBgColor dark:bg-secondLightBgColor"></div>
+                      Feeling lucky?
+                    </motion.div>
+                  )}
               </motion.div>
             </Link>
             <motion.div

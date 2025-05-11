@@ -1,3 +1,4 @@
+// Same as the LoadingCard component but with a different layout
 const RandomGameLoader = () => {
   return (
     <>

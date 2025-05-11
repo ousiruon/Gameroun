@@ -1,15 +1,19 @@
 import { motion } from "motion/react";
 import { useState } from "react";
+// Interface for each mood
 interface MoodProps {
   id: number;
   mood: string;
   emoji: string;
 }
+// Interface for the props of the MoodPicker component
+// This interface is used to define the props that the MoodPicker component will receive
 interface MoodPickerProps {
   selectedMood: string;
   setSelectedMood: (mood: string) => void;
   setCurrentPosition: (position: number | ((prev: number) => number)) => void;
 }
+// A set of moods with their corresponding emojis
 const categoryToMood = [
   {
     id: 4,
@@ -118,6 +122,7 @@ const MoodPicker = ({
   }>({ id: null, hover: false });
   const [nextButtonAnimation, setNextButtonAnimation] = useState(false);
   const [prevButtonAnimation, setPrevButtonAnimation] = useState(false);
+  const [displayError, setDispayError] = useState<boolean>(false);
   return (
     <>
       {categoryToMood.length > 0 ? (
@@ -157,79 +162,89 @@ const MoodPicker = ({
               </motion.div>
             ))}
           </div>
-          <div className="my-5 flex items-center justify-center text-xl font-bold gap-6">
-            <motion.div
-              className="bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden"
-              onHoverStart={() => setPrevButtonAnimation(true)}
-              onHoverEnd={() => setPrevButtonAnimation(false)}
-              onClick={() => setCurrentPosition((prev) => prev - 1)}
+          <div className="my-5 flex flex-col items-center justify-center text-xl font-bold gap-2">
+            <div
+              className={`text-red-500 mr-2 text-base ${
+                displayError ? "block" : "hidden"
+              }`}
             >
+              You must select at least one mood
+            </div>
+            <div className="flex items-center justify-center gap-6">
               <motion.div
-                className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"
-                whileHover={{
-                  width: "150%",
-                  height: "150%",
-                  transition: { duration: 1 },
-                }}
-                initial={prevButtonAnimation ? {} : { width: 0, height: 0 }}
-                animate={
-                  prevButtonAnimation
-                    ? {
-                        width: "150%",
-                        height: "150%",
-                        transition: { duration: 1 },
-                      }
-                    : {}
-                }
-              ></motion.div>
-              <motion.div
-                className={`relative z-10 ease-in duration-200 transition-all ${
-                  prevButtonAnimation
-                    ? "dark:text-darkMainColor text-lightMainColor"
-                    : ""
-                }`}
+                className="bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden"
+                onHoverStart={() => setPrevButtonAnimation(true)}
+                onHoverEnd={() => setPrevButtonAnimation(false)}
+                onClick={() => setCurrentPosition((prev) => prev - 1)}
               >
-                Previous
+                <motion.div
+                  className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"
+                  whileHover={{
+                    width: "150%",
+                    height: "150%",
+                    transition: { duration: 1 },
+                  }}
+                  initial={prevButtonAnimation ? {} : { width: 0, height: 0 }}
+                  animate={
+                    prevButtonAnimation
+                      ? {
+                          width: "150%",
+                          height: "150%",
+                          transition: { duration: 1 },
+                        }
+                      : {}
+                  }
+                ></motion.div>
+                <motion.div
+                  className={`relative z-10 ease-in duration-200 transition-all ${
+                    prevButtonAnimation
+                      ? "dark:text-darkMainColor text-lightMainColor"
+                      : ""
+                  }`}
+                >
+                  Previous
+                </motion.div>
               </motion.div>
-            </motion.div>
-            <motion.div
-              className="bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden"
-              onHoverStart={() => setNextButtonAnimation(true)}
-              onHoverEnd={() => setNextButtonAnimation(false)}
-              onClick={() =>
-                setCurrentPosition((prev) =>
-                  selectedMood.length > 0 ? prev + 1 : prev
-                )
-              }
-            >
               <motion.div
-                className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"
-                whileHover={{
-                  width: "150%",
-                  height: "150%",
-                  transition: { duration: 1 },
+                className="bg-lightBgColor text-lightMainColor dark:bg-darkBgColor dark:text-darkMainColor px-4 py-2 rounded-md cursor-pointer relative flex items-center justify-center overflow-hidden"
+                onHoverStart={() => setNextButtonAnimation(true)}
+                onHoverEnd={() => setNextButtonAnimation(false)}
+                onClick={() => {
+                  selectedMood.length === 0 && setDispayError(true);
+                  setCurrentPosition((prev) =>
+                    selectedMood.length > 0 ? prev + 1 : prev
+                  );
                 }}
-                initial={nextButtonAnimation ? {} : { width: 0, height: 0 }}
-                animate={
-                  nextButtonAnimation
-                    ? {
-                        width: "150%",
-                        height: "150%",
-                        transition: { duration: 1 },
-                      }
-                    : {}
-                }
-              ></motion.div>
-              <motion.div
-                className={`relative z-10 ease-in duration-200 transition-all ${
-                  nextButtonAnimation
-                    ? "dark:text-darkMainColor text-lightMainColor"
-                    : ""
-                }`}
               >
-                Next
+                <motion.div
+                  className="absolute rounded-full bg-lightSecondMainColor  dark:bg-darkSecondMainColor"
+                  whileHover={{
+                    width: "150%",
+                    height: "150%",
+                    transition: { duration: 1 },
+                  }}
+                  initial={nextButtonAnimation ? {} : { width: 0, height: 0 }}
+                  animate={
+                    nextButtonAnimation
+                      ? {
+                          width: "150%",
+                          height: "150%",
+                          transition: { duration: 1 },
+                        }
+                      : {}
+                  }
+                ></motion.div>
+                <motion.div
+                  className={`relative z-10 ease-in duration-200 transition-all ${
+                    nextButtonAnimation
+                      ? "dark:text-darkMainColor text-lightMainColor"
+                      : ""
+                  }`}
+                >
+                  Next
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
         </div>
       ) : (

@@ -1,6 +1,7 @@
 import {create} from 'zustand';
 import {CategoriesProps} from "../../components/Categories";
 import { PlatformsProps } from '../../components/Games/Games';
+// Interface for the API data
 export interface DataProps {
     id: number;
     name:string;
@@ -13,12 +14,14 @@ export interface DataProps {
     genres: [{id:number, name:string}];
     ratings: [{id: number, title: string, count: number, percent: number}];
 }
+// Interface for a single game
 export interface SingleDataProps extends DataProps {
     description_raw: string;
     website: string;
     background_image_additional: string;
     publishers: [{id:number, name: string}];
 }
+// Function to fetch categories from the API
 export const fetchCategories = async(apiKey:string) => {
     try {
         const res = await fetch(`https://api.rawg.io/api/genres?key=${apiKey}`);
@@ -33,6 +36,7 @@ export const fetchCategories = async(apiKey:string) => {
         return [];
     }
 }
+// Function to fetch platforms from the API
 export const fetchPlatforms = async(apiKey:string) => {
     try {
         const res = await fetch(`https://api.rawg.io/api/platforms?key=${apiKey}`);
@@ -47,6 +51,7 @@ export const fetchPlatforms = async(apiKey:string) => {
         return [];
     }
 }
+// Function to fetch games from the API
 export const fetchGames = async(apiKey:string, platforms: null | string, ordering: null | string, genres: null | string, tag: null | string, currentPage:number, searching:boolean, query: string | null) => {
     try {
         const res = searching ? await fetch(`https://api.rawg.io/api/games?search=${query ? `${query}&`:``}${currentPage > 1 ? `page=${currentPage}&` : ""}&key=${apiKey}&page_size=24&ordering=-metacritic`): await fetch(`https://api.rawg.io/api/games?${genres ? `genres=${genres}&` :''}${tag ? `tags=${tag}&` :''}${platforms ? `platforms=${platforms}&`:''}${ordering ? `ordering=-${ordering}&`:''}${currentPage > 1 ? `page=${currentPage}&` : ""}key=${apiKey}&page_size=24`);
@@ -61,6 +66,7 @@ export const fetchGames = async(apiKey:string, platforms: null | string, orderin
         return [];
     }
 }
+// Function to fetch radom games from the API
 export const fetchRandomGames = async(apiKey:string, platforms: null | string, genres: null | string) => {
     try {
         const res = await fetch(`https://api.rawg.io/api/games?${genres ? `genres=${genres}&` :''}${platforms ? `platforms=${platforms}&`:''}&key=${apiKey}&page_size=40`);
@@ -93,6 +99,7 @@ export const fetchRandomGames = async(apiKey:string, platforms: null | string, g
         return [];
     }
 }
+// Function to fetch a single game from the API
 export const singleGame = async(apiKey:string, id: string) => {
     try {
         const res = await fetch(`https://api.rawg.io/api/games/${id}?key=${apiKey}`);
@@ -107,6 +114,8 @@ export const singleGame = async(apiKey:string, id: string) => {
         return [];
     }
 }
+// Interface for "Filters" in the store
+// It contains a set of filters that can be used to fetch the games
 interface FilterProps {
     platforms: null | string;
     ordering: null | string;
@@ -114,6 +123,8 @@ interface FilterProps {
     page: number;
     tag: null | string;
 }
+// Interface for the store
+// It contains the data, singleData, categories, platforms, filters and functions to set them
 interface useDataProps {
     apiKey: string;
     data: DataProps[] | [];
@@ -137,7 +148,10 @@ interface useDataProps {
     setSearching: (mode:boolean) => void;
     setSearchQuery: (query:string | null) => void;
 }
-const apiKey = import.meta.env.VITE_API_KEY;
+// API key from the environment variables
+const apiKey: string = import.meta.env.VITE_API_KEY;
+// Create the store using Zustand
+// It contains the data, singleData, categories, platforms, filters and functions to set them
 export const useData = create<useDataProps>((set) => ({
     apiKey: apiKey,
     data: [],

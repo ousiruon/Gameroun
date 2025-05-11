@@ -1,3 +1,4 @@
+// A loading card component that displays a skeleton loading state for a card
 const LoadingCard = () => {
   return (
     <>

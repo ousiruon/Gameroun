@@ -4,7 +4,8 @@ import Games from "./Games/Games";
 import { useEffect } from "react";
 import { containerVariants } from "./IndexPage";
 import { motion } from "motion/react";
-
+// Show a set of games based on the category selected
+// This component is used to show a list of games based on the category selected
 const CategoryPage = () => {
   const params = useParams<{ categoryName: string; categoryId: string }>();
   useEffect(() => {

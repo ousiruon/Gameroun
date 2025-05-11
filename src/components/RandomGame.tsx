@@ -1,10 +1,13 @@
 import { AnimatePresence, motion } from "motion/react";
 import ConsolePicker, { ConsolesProps } from "./Random Game/ConsolePicker";
 import { useEffect, useState } from "react";
-import { FaRegCircleDot } from "react-icons/fa6";
 import MoodPicker from "./Random Game/MoodPicker";
 import RenderRandomGame from "./RenderRandomGame";
+import { MdKeyboardArrowRight } from "react-icons/md";
+// RandomGame component
+// This component is used to show a random game based on the selected console and mood
 const RandomGame = () => {
+  // A set of consoles with their corresponding ids
   const consoles: ConsolesProps[] = [
     {
       id: 4,
@@ -58,7 +61,7 @@ const RandomGame = () => {
     <>
       <motion.div className="flex flex-col max-w-screen w-full overflow-hidden">
         {currentPosition < 2 && (
-          <div className="w-full flex items-end justify-end py-6 px-6 text-2xl gap-2">
+          <div className="w-full flex items-end justify-end py-6 px-6 text-2xl">
             {[...Array(2)].map((_, index) => (
               <div
                 className={`${
@@ -68,7 +71,7 @@ const RandomGame = () => {
                 }`}
                 key={index}
               >
-                <FaRegCircleDot />
+                <MdKeyboardArrowRight />
               </div>
             ))}
           </div>

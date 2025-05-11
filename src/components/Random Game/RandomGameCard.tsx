@@ -3,7 +3,10 @@ import No_Preview_image_2 from "../../assets/imgs/No_Preview_image_2.png";
 import { motion } from "motion/react";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
-
+// This component is used to show a random game card
+// It takes in the data of the game, the maximum length of the data, the current index, and a function to set the current index if changed
+/* --------------------------------------------------------------------------------------- */
+// This interface is used to define the props that the RandomGameCard component will receive
 interface RandomGameCardProps {
   data: DataProps;
   maxLength: number;

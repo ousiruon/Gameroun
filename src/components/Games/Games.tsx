@@ -14,6 +14,8 @@ export interface PlatformsProps {
   id: number;
   name: string;
 }
+// Games component
+// This component is used to show a list of games
 const Games = () => {
   const {
     apiKey,
@@ -32,11 +34,11 @@ const Games = () => {
     searchQuery,
     setSearchQuery,
   } = useData();
-  const [updated, setUpdated] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [loadMore, setLoadMore] = useState(false);
-  const [totalCount, setTotalCount] = useState(0);
-  const [showError, setShowError] = useState(false);
+  const [updated, setUpdated] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadMore, setLoadMore] = useState<boolean>(false);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [showError, setShowError] = useState<boolean>(false);
   const params = useParams();
   const [searchParams] = useSearchParams();
   const query = searchParams.get("query");
